@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:Jg0tYMu3YYotyjkn14wuJNk7Ay7OP9hitgo0GP80mqej7gNKBKuMmuI20WgX4txE@89.109.16.50:3000/postgres"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum AppStatus {
+  NEW
+  IN_PROGRESS // Идет обучение
+  COMPLETED // Обучение завершено
+}
+
+enum Payment {
+  CASH
+  TRANSFER
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  login        String        @unique
+  password     String
+  name         String
+  surname      String
+  middleName   String?
+  role         Role          @default(USER)
+  phone        String
+  email        String        @unique
+  applications Application[]
+}
+
+model Application {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  user          User      @relation(fields: [userId], references: [id])
+  courseName    String
+  beginDate     DateTime
+  paymentMethod Payment
+  status        AppStatus @default(NEW)
+  review        Review?
+}
+
+model Review {
+  id            Int         @id @default(autoincrement())
+  applicationId Int         @unique
+  application   Application @relation(fields: [applicationId], references: [id])
+  content       String
+  rating        Int
+}
