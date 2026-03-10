@@ -26,5 +26,8 @@
     "fastify": "^5.8.2",
     "pg": "^8.20.0",
     "prisma": "^6.19.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1"
   }
 }
