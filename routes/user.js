@@ -17,6 +17,7 @@ module.exports = async function (fastify) {
           surname,
           phone,
           email,
+          role: "ADMIN",
         },
       });
       res.status(200).send(user);
@@ -34,6 +35,12 @@ module.exports = async function (fastify) {
       return res.code(401).send({ error: "Incorrect login or password" });
     }
 
-    return res.status(200).send({ message: "Logged in" });
+    const token = fastify.jwt.sign({ id: user.id, role: user.role });
+    return res.status(200).send({ message: `Logged in. The token: ${token}` });
+  });
+
+  fastify.get("/", async (req, res) => {
+    const users = await prisma.user.findMany();
+    return res.code(200).send({ message: users });
   });
 };
