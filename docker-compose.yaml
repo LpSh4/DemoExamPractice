@@ -9,4 +9,4 @@ services:
       - .env
     restart: unless-stopped
     ports:
-      - "911:3000"
+      - "911:3001"
