@@ -2,8 +2,42 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const bcrypt = require("bcrypt");
 
+const registerSchema = {
+  body: {
+    type: "object",
+    required: ["login", "password", "name", "surname", "phone", "email"],
+    properties: {
+      login: {
+        type: "string",
+        pattern: "^[A-Za-z0-9]{6,}$",
+      },
+      password: {
+        type: "string",
+        minLength: 8,
+      },
+      name: {
+        type: "string",
+      },
+      middleName: {
+        type: "string",
+      },
+      surname: {
+        type: "string",
+      },
+      phone: {
+        type: "string",
+        pattern: "^89\\d{9}$",
+      },
+      email: {
+        type: "string",
+        format: "email",
+      },
+    },
+  },
+};
+
 module.exports = async function (fastify) {
-  fastify.post("/", async (req, res) => {
+  fastify.post("/", { schema: registerSchema }, async (req, res) => {
     const { login, password, name, middleName, surname, phone, email } =
       req.body;
 
@@ -17,10 +51,9 @@ module.exports = async function (fastify) {
           surname,
           phone,
           email,
-          role: "ADMIN",
         },
       });
-      res.status(200).send(user);
+      res.status(201).send(user);
     } catch (error) {
       res.status(401).send({ error: error.message });
       console.log(error);
