@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 3001
 
-CMD npm test
+CMD npm run prod
