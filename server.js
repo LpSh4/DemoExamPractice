@@ -23,7 +23,7 @@ fastify.register(require("./routes/application"), { prefix: "/applications" });
 fastify.register(require("./routes/user"), { prefix: "/users" });
 fastify.register(require("./routes/review"), { prefix: "/reviews" });
 
-fastify.listen({ port: 3001 }, (err) => {
+fastify.listen({ port: 3001, host: "0.0.0.0" }, (err) => {
   if (err) throw err;
-  console.log("Server running at http://localhost:3000");
+  console.log("Server running at http://localhost:3001");
 });
