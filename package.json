@@ -4,7 +4,8 @@
   "description": "Practicing Demo Exam for my College.",
   "main": "index.js",
   "scripts": {
-    "test": "node --watch server.js"
+    "test": "node --watch server.js",
+    "prod": "prisma generate && prisma db push && node server.js"
   },
   "repository": {
     "type": "git",
