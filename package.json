@@ -1,0 +1,28 @@
+{
+  "name": "demoexampractice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LpSh4/DemoExamPractice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LpSh4/DemoExamPractice/issues"
+  },
+  "homepage": "https://github.com/LpSh4/DemoExamPractice#readme",
+  "dependencies": {
+    "@fastify/static": "^9.0.0",
+    "@fastify/view": "^11.1.1",
+    "ejs": "^5.0.1",
+    "fastify": "^5.8.2",
+    "node-fetch": "^3.3.2"
+  }
+}

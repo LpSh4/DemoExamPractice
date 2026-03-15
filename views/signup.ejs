@@ -1,0 +1,30 @@
+<section>
+    <h1>Sign up</h1>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+        <p class="error"><%= error %></p>
+    <% } %>
+
+    <form action="/signup" method="post">
+        <label>
+            Name
+            <input type="text" name="name" required />
+        </label>
+
+        <label>
+            Email
+            <input type="email" name="email" required />
+        </label>
+
+        <label>
+            Password
+            <input type="password" name="password" required />
+        </label>
+
+        <button type="submit">Create account</button>
+    </form>
+
+    <p>
+        Have an account? <a href="/login">Log in.</a>
+    </p>
+</section>
